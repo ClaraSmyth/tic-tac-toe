@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-    const board = () => ['x', 'x', 'x','o', 'o', 'o','x', 'x', 'x',];
+    const board = () => ['x', 'x', 'x','o', 'o', 'o','x', 'x', 'x'];
 
     return {board};
 })();
@@ -9,12 +9,20 @@ const displayController = (() => {
     const gridCube = document.querySelectorAll('.game-board-cube');
 
     const populateGrid = () => {
-        gameBoard.board().forEach(item => {
-            gridCube.forEach(cube => cube.innerText = item);
+        gridCube.forEach((cube, index) => {
+            cube.innerText = gameBoard.board()[index];
         });
     };
 
-    return {populateGrid}
+    // const selection = () => {
+    //     gridCube.forEach(cube => {
+    //         cube.addEventListener('click', (e) => {
+    //             console.log(cube.innerText)
+    //         })
+    //     })
+    // }
+
+    return {populateGrid, selection}
 
 })();
 
@@ -26,3 +34,4 @@ const Player = (name) => {
 console.log(gameBoard.board())
 
 displayController.populateGrid()
+displayController.selection()
