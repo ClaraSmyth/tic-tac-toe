@@ -30,10 +30,18 @@ const gameBoard = (() => {
 const displayController = (() => {
     const gridCube = document.querySelectorAll('.game-board-cube');
     const currentTurn = document.querySelector('.current-player');
-    const outcomeModal = document.querySelector('.game-modal-outcome')
+    const modalOutcome = document.querySelector('.game-modal-outcome')
+    const modal = document.querySelector('.game-modal')
+
+    const showModal = () => {
+        modal.classList.add('active');
+        modal.addEventListener('click', (e) => {
+            modal.classList.remove('active');
+        }, {once: true});
+    };
 
     const updateModal = (outcome, winner) => {
-        outcome === 'win' ? outcomeModal.innerText = `${winner} Wins!` : outcomeModal.innerText = 'Its a Tie!';
+        outcome === 'win' ? modalOutcome.innerText = `${winner} Wins!` : modalOutcome.innerText = 'Its a Tie!';
     };
 
     const populateGrid = () => {
@@ -52,13 +60,13 @@ const displayController = (() => {
                     gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
                     if (gameBoard.checkTie() === false) restartGame('tie');
                     currentTurn.innerText = currentPlayer[0].name;
-                    console.log(gameBoard.board);
+                    // console.log(gameBoard.board);
                 } 
             });
         });
     };
 
-    return {populateGrid, selection, updateModal};
+    return {populateGrid, selection, updateModal, showModal};
 })();
 
 const Player = (name, value) => {
@@ -78,6 +86,7 @@ const playGame = (() => {
         gameBoard.clearBoard();
         displayController.populateGrid();
         condition === 'win' ? displayController.updateModal(condition, currentPlayer[0].name) : displayController.updateModal('tie');
+        displayController.showModal()
         currentPlayer.splice(0, 1, playerOne);
     }
 
