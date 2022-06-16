@@ -7,12 +7,12 @@ const gameBoard = (() => {
         board.splice(index, 1, value);
     }
 
-    const checkWin = () => {
+    const checkWin = (currentPlayer) => {
         let check = winConditions.some(winCon => {
             console.log(winCon)
             return winCon.every(e => {
-                console.log(board[e] === 'x')
-                return board[e] === 'x';
+                console.log(board[e] === `${currentPlayer.value}`)
+                return board[e] === `${currentPlayer.value}`;
             })
         })
         console.log(check)
@@ -35,11 +35,10 @@ const displayController = (() => {
         gridCube.forEach((cube, index) => {
             cube.addEventListener('click', (e) => {
                 gameBoard.updateBoard(index, playGame.currentPlayer[0].value);
+                gameBoard.checkWin(playGame.currentPlayer[0]);
                 populateGrid();
                 playGame.updatePlayer()
-                gameBoard.checkWin()
                 // console.log(gameBoard.checkWin.value)
-                // console.log(playGame.currentPlayer)
                 // console.log(index);
                 // console.log(gameBoard.board);
             },{once: true});
@@ -71,11 +70,3 @@ const playGame = (() => {
 // displayController.populateGrid()
 // displayController.selection()
 // console.log(gameBoard.board)
-
-let numbers = [1, 3, 5];
-let result = numbers.every(function (e) {
-    console.log(e)
-    return e > 0;
-});
-
-console.log(result);
