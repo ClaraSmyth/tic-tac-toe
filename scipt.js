@@ -38,8 +38,6 @@ const displayController = (() => {
     const formModalInputTwo = document.querySelector('#player-two');
     const gridCubeIcons = document.querySelectorAll('[data-cube-img]')
 
-    console.log(gridCubeIcons[0])
-
     const grabFormSubmit = (updateName) => {
         formModalSubmit.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -66,7 +64,6 @@ const displayController = (() => {
 
     const populateGrid = () => {
         gridCube.forEach((cube, index) => {
-            // cube.innerText = gameBoard.board[index];
             if (gameBoard.board[index] === 'x') {
                 cube.id = gameBoard.board[index];
                 gridCubeIcons[index].setAttribute('src', './icons/xmark-solid.svg');
@@ -79,13 +76,6 @@ const displayController = (() => {
             }
         });
     };
-
-    // const populateGrid = () => {
-    //     gridCube.forEach((cube, index) => {
-    //         cube.innerText = gameBoard.board[index];
-    //         console.log
-    //     });
-    // };
 
     const selection = (currentPlayer, updatePlayer, restartGame) => {
         currentTurn.innerText = currentPlayer[0].name;
