@@ -4,33 +4,37 @@ const gameBoard = (() => {
 
     const updateBoard = (index, value) => {
         board.splice(index, 1, value);
-    }
+    };
 
     const clearBoard = () => {
         board.splice(0, 9, '', '', '','', '', '','', '', '');
-    }
+    };
 
     const checkWin = (currentPlayer) => {
         return winConditions.some(winCon => {
             return winCon.every(index => {
                 return board[index] === `${currentPlayer.value}`;
-            })
-        })
-    }
+            });
+        });
+    };
 
     const checkTie = () => {
         return board.some(value => {
             return value === '';
-        })
-    }
+        });
+    };
 
     return {board, winConditions, updateBoard, clearBoard, checkWin, checkTie};
 })();
 
 const displayController = (() => {
-    const gameGrid = document.querySelector('.game-board');
     const gridCube = document.querySelectorAll('.game-board-cube');
-    const currentTurn = document.querySelector('.current-player')
+    const currentTurn = document.querySelector('.current-player');
+    const outcomeModal = document.querySelector('.game-modal-outcome')
+
+    const updateModal = (outcome, winner) => {
+        outcome === 'win' ? outcomeModal.innerText = `${winner} Wins!` : outcomeModal.innerText = 'Its a Tie!';
+    };
 
     const populateGrid = () => {
         gridCube.forEach((cube, index) => {
@@ -48,14 +52,13 @@ const displayController = (() => {
                     gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
                     if (gameBoard.checkTie() === false) restartGame('tie');
                     currentTurn.innerText = currentPlayer[0].name;
-                    console.log(gameBoard.board)
+                    console.log(gameBoard.board);
                 } 
             });
         });
-    }
+    };
 
-    return {populateGrid, selection}
-
+    return {populateGrid, selection, updateModal};
 })();
 
 const Player = (name, value) => {
@@ -72,13 +75,13 @@ const playGame = (() => {
     }
 
     const restartGame = (condition) => {
-        gameBoard.clearBoard()
-        displayController.populateGrid()
-        condition === 'win' ? console.log(`WINNER ${currentPlayer[0].name}`) : console.log(`TIE`);
-        currentPlayer.splice(0, 1, playerOne)
+        gameBoard.clearBoard();
+        displayController.populateGrid();
+        condition === 'win' ? displayController.updateModal(condition, currentPlayer[0].name) : displayController.updateModal('tie');
+        currentPlayer.splice(0, 1, playerOne);
     }
 
-    displayController.selection(currentPlayer, updatePlayer, restartGame)
+    displayController.selection(currentPlayer, updatePlayer, restartGame);
 
     return;
 })();
