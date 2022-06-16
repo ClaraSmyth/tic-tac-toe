@@ -7,18 +7,19 @@ const gameBoard = (() => {
         board.splice(index, 1, value);
     }
 
-    const checkWin = (currentPlayer) => {
-        let check = winConditions.some(winCon => {
-            console.log(winCon)
-            return winCon.every(e => {
-                console.log(board[e] === `${currentPlayer.value}`)
-                return board[e] === `${currentPlayer.value}`;
-            })
-        })
-        console.log(check)
+    const clearBoard = () => {
+        board.splice(0, 9, '', '', '','', '', '','', '', '');
     }
 
-    return {board, winConditions, updateBoard, checkWin};
+    const checkWin = (currentPlayer) => {
+        return winConditions.some(winCon => {
+            return winCon.every(index => {
+                return board[index] === `${currentPlayer.value}`;
+            })
+        })
+    }
+
+    return {board, winConditions, updateBoard, clearBoard, checkWin};
 })();
 
 const displayController = (() => {
@@ -34,14 +35,13 @@ const displayController = (() => {
     const selection = () => {
         gridCube.forEach((cube, index) => {
             cube.addEventListener('click', (e) => {
-                gameBoard.updateBoard(index, playGame.currentPlayer[0].value);
-                gameBoard.checkWin(playGame.currentPlayer[0]);
-                populateGrid();
-                playGame.updatePlayer()
-                // console.log(gameBoard.checkWin.value)
-                // console.log(index);
-                // console.log(gameBoard.board);
-            },{once: true});
+                if(cube.innerText === '') {
+                    gameBoard.updateBoard(index, playGame.currentPlayer[0].value);
+                    populateGrid();
+                    gameBoard.checkWin(playGame.currentPlayer[0]) === false ? playGame.updatePlayer() : playGame.restartGame();
+                    console.log(gameBoard.board)
+                } 
+            });
         });
     }
 
@@ -55,16 +55,22 @@ const Player = (name, value) => {
 
 const playGame = (() => {
     const playerOne = Player('Clara', 'x');
-    const playerTwo = Player('Computer', 'o');
+    const playerTwo = Player('P2', 'o');
     let currentPlayer = [playerOne];
 
     const updatePlayer = () => {
         currentPlayer[0] === playerOne ? currentPlayer.splice(0, 1, playerTwo) : currentPlayer.splice(0, 1, playerOne);
     }
 
+    const restartGame = () => {
+        console.log(`Winner is ${currentPlayer[0].name}`)
+        gameBoard.clearBoard()
+        displayController.populateGrid()
+    }
+
     displayController.selection()
 
-    return {currentPlayer, updatePlayer};
+    return {currentPlayer, updatePlayer, restartGame};
 })();
 
 // displayController.populateGrid()
