@@ -5,6 +5,10 @@ body {
     align-items: center;
 }
 
+.current-player {
+    text-align: center;
+}
+
 .game-board {
     display: grid;
     grid-template-columns: repeat(3, 200px);
