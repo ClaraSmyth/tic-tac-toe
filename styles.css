@@ -29,7 +29,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: hsla(0, 0%, 0%, 0.3);
-    /* display: none; */
+    display: none;
 }
 
 .game-modal.active {
@@ -37,6 +37,35 @@ body {
 }
 
 .game-modal-container {
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 200px);
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
+
+.form-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.3);
+    display: none;
+}
+
+.form-modal.active {
+    display: block;
+}
+
+.form-modal-container {
     position: absolute;
     top: calc(50% - 125px);
     left: calc(50% - 200px);
