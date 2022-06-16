@@ -21,3 +21,32 @@ body {
     align-items: center;
     border: 1px solid black;
 }
+
+.game-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.3);
+    /* display: none; */
+}
+
+.game-modal.active {
+    display: block;
+}
+
+.game-modal-container {
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 200px);
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
