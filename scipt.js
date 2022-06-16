@@ -30,13 +30,31 @@ const gameBoard = (() => {
 const displayController = (() => {
     const gridCube = document.querySelectorAll('.game-board-cube');
     const currentTurn = document.querySelector('.current-player');
-    const modalOutcome = document.querySelector('.game-modal-outcome')
-    const modal = document.querySelector('.game-modal')
+    const modalOutcome = document.querySelector('.game-modal-outcome');
+    const endGameModal = document.querySelector('.game-modal');
+    const formModal = document.querySelector('.form-modal');
+    const formModalSubmit = document.querySelector('.form-modal-container');
+    const formModalInputOne = document.querySelector('#player-one');
+    const formModalInputTwo = document.querySelector('#player-two');
 
-    const showModal = () => {
-        modal.classList.add('active');
-        modal.addEventListener('click', (e) => {
-            modal.classList.remove('active');
+
+    const grabFormSubmit = (updateName) => {
+        formModalSubmit.addEventListener('submit', (e) => {
+            e.preventDefault();
+            updateName(formModalInputOne.value, formModalInputTwo.value)
+            formModal.classList.remove('active');
+            currentTurn.innerText = formModalInputOne.value;
+        })
+    }
+
+    const showFormModal = () => {
+        formModal.classList.add('active');
+    }
+
+    const showEndGameModal = () => {
+        endGameModal.classList.add('active');
+        endGameModal.addEventListener('click', (e) => {
+            endGameModal.classList.remove('active');
         }, {once: true});
     };
 
@@ -66,7 +84,7 @@ const displayController = (() => {
         });
     };
 
-    return {populateGrid, selection, updateModal, showModal};
+    return {populateGrid, selection, updateModal, showEndGameModal, showFormModal, grabFormSubmit};
 })();
 
 const Player = (name, value) => {
@@ -78,6 +96,11 @@ const playGame = (() => {
     const playerTwo = Player('Player Two', 'o');
     let currentPlayer = [playerOne];
 
+    const updateName = (nameOne, nameTwo) => {
+        playerOne.name = nameOne;
+        playerTwo.name = nameTwo;
+   }
+
     const updatePlayer = () => {
         currentPlayer[0] === playerOne ? currentPlayer.splice(0, 1, playerTwo) : currentPlayer.splice(0, 1, playerOne);
     }
@@ -86,15 +109,12 @@ const playGame = (() => {
         gameBoard.clearBoard();
         displayController.populateGrid();
         condition === 'win' ? displayController.updateModal(condition, currentPlayer[0].name) : displayController.updateModal('tie');
-        displayController.showModal()
+        displayController.showEndGameModal()
         currentPlayer.splice(0, 1, playerOne);
     }
 
-    displayController.selection(currentPlayer, updatePlayer, restartGame);
-
+    displayController.showFormModal();
+    displayController.grabFormSubmit(updateName);
+    displayController.selection(currentPlayer, updatePlayer, restartGame, updateName);
     return;
 })();
-
-// displayController.populateGrid()
-// displayController.selection()
-// console.log(gameBoard.board)
