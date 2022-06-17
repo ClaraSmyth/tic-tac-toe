@@ -55,6 +55,7 @@ const displayController = (() => {
         endGameModal.classList.add('active');
         endGameModal.addEventListener('click', (e) => {
             endGameModal.classList.remove('active');
+            populateGrid();
         }, {once: true});
     };
 
@@ -116,7 +117,6 @@ const playGame = (() => {
 
     const restartGame = (condition) => {
         gameBoard.clearBoard();
-        displayController.populateGrid();
         condition === 'win' ? displayController.updateModal(condition, currentPlayer[0].name) : displayController.updateModal('tie');
         displayController.showEndGameModal()
         currentPlayer.splice(0, 1, playerOne);
