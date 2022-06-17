@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
 :root {
-    --color-one: #282f47;
+    --color-one: #004254;
     --color-two: #f3f1f4;
     --color-three: #fd518d;
     --color-four: #45a1b5;
@@ -27,12 +27,13 @@ body {
     font-size: 2rem;
     width: 100%;
     text-align: center;
-    text-shadow: 3px 3px var(--color-four);
+    color: var(--color-four);
+    text-shadow: 3px 3px var(--color-two);
     box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
 }
 
 .header-title-span {
-    text-shadow: 3px 3px var(--color-three);
+    color: var(--color-three);
 }
 
 /*######################################
@@ -40,20 +41,21 @@ body {
 ######################################*/
 
 .main-content {
-    padding: 0 1rem;
+    padding: 0 1rem 1rem;
 }
 
 .current-player {
     text-align: center;
     font-size: 2rem;
     padding: 1rem;
+    text-shadow: 0 0 8px hsla(0, 0%, 0%, 0.2);
 }
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(3, 200px);
+    grid-template-columns: repeat(3, minmax(100px, 200px));
     grid-template-rows: repeat(3, 200px);
-    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
+    box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.5);
 }
 
 .game-board-cube {
@@ -86,13 +88,14 @@ body {
     height: 250px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
     background-color: var(--color-one);
     color: var(--color-two);
     border-radius: 2rem;
     box-shadow: 0 0 10px hsla(0, 0%, 0%,0.6);
+    text-shadow: 0 0 8px black;
 }
 
 .game-modal-header{
@@ -136,6 +139,7 @@ body {
     color: var(--color-two);
     border-radius: 2rem;
     box-shadow: 0 0 10px hsla(0, 0%, 0%,0.6);
+    text-shadow: 0 0 8px black;
 }
 
 .form-modal-input {
