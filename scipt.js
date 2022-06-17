@@ -43,7 +43,7 @@ const displayController = (() => {
             e.preventDefault();
             updateName(formModalInputOne.value, formModalInputTwo.value)
             formModal.classList.remove('active');
-            currentTurn.innerText = formModalInputOne.value;
+            currentTurn.innerText = `Current player: ${formModalInputOne.value}`;
         })
     }
 
@@ -78,7 +78,7 @@ const displayController = (() => {
     };
 
     const selection = (currentPlayer, updatePlayer, restartGame) => {
-        currentTurn.innerText = currentPlayer[0].name;
+        currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
         gridCube.forEach((cube, index) => {
             cube.addEventListener('click', (e) => {
                 if (cube.id === '') {
@@ -86,7 +86,7 @@ const displayController = (() => {
                     populateGrid();
                     gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
                     if (gameBoard.checkTie() === false) restartGame('tie');
-                    currentTurn.innerText = currentPlayer[0].name;
+                    currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
                     // console.log(gameBoard.board);
                 } 
             });
