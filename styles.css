@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
 :root {
-    --color-one: #eef2ee;
-    --color-two: #1e2735;
-    --color-three: #f54d67;
-    --color-four: #0b6ef9;
+    --color-one: #282f47;
+    --color-two: #f3f1f4;
+    --color-three: #fd518d;
+    --color-four: #45a1b5;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Patua One', cursive;    
+    font-family: 'Patua One', cursive;
     font-size: 16px;
     background-color: var(--color-one);
     color: var(--color-two);
@@ -23,11 +23,16 @@ body {
 ######################################*/
 
 .header {
-    padding: 1rem;
-    font-size: 24px;
+    padding: 0.5rem;
+    font-size: 2rem;
     width: 100%;
     text-align: center;
+    text-shadow: 3px 3px var(--color-four);
     box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
+}
+
+.header-title-span {
+    text-shadow: 3px 3px var(--color-three);
 }
 
 /*######################################
@@ -40,6 +45,7 @@ body {
 
 .current-player {
     text-align: center;
+    font-size: 2rem;
     padding: 1rem;
 }
 
@@ -54,7 +60,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid var(--color-two);
     padding: 1rem;
 }
 
@@ -82,9 +88,23 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
-    background-color: black;
-    color: white;
+    padding: 1rem;
+    background-color: var(--color-one);
+    color: var(--color-two);
+    border-radius: 2rem;
+    box-shadow: 0 0 10px hsla(0, 0%, 0%,0.6);
+}
+
+.game-modal-header{
+    font-size: 2.5rem;
+}
+
+.game-modal-outcome {
+    font-size: 2rem;
+}
+
+.game-modal-footer {
+    font-size: 1.5rem;
 }
 
 .form-modal {
@@ -112,7 +132,7 @@ body {
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    background-color: white;
+    background-color: var(--color-one);
     color: var(--color-two);
     border-radius: 2rem;
     box-shadow: 0 0 10px hsla(0, 0%, 0%,0.6);
@@ -120,7 +140,7 @@ body {
 
 .form-modal-input {
     padding: 0.2rem 1rem;
-    border: 2px solid var(--color-two);
+    border: 2px solid var(--color-four);
     border-radius: 1rem;
 }
 
@@ -134,6 +154,7 @@ body {
     padding: 0.5rem 2rem;
     margin-top: 0.5rem;
     border-radius: 1rem;
+    color: var(--color-two)
 }
 
 .form-modal-submit:hover {
@@ -147,10 +168,18 @@ body {
 .footer {
     padding: 1rem;
     width: 100%;
+    font-size: 1.2rem;
     text-align: center;
     box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
 }
 
 .footer-link {
     text-decoration: none;
+    font-size: 1.3rem;
+    color: var(--color-two);
+    text-shadow: 1.5px 1.5px var(--color-four);
+}
+
+.footer-link:hover {
+    text-shadow: 1.5px 1.5px var(--color-three);
 }
