@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
+:root {
+    --color-one: #eef2ee;
+    --color-two: #1e2735;
+    --color-three: #f54d67;
+    --color-four: #0b6ef9;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -7,6 +14,8 @@ body {
     align-items: center;
     font-family: 'Patua One', cursive;    
     font-size: 16px;
+    background-color: var(--color-one);
+    color: var(--color-two);
 }
 
 /*######################################
@@ -16,6 +25,9 @@ body {
 .header {
     padding: 1rem;
     font-size: 24px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
 }
 
 /*######################################
@@ -35,6 +47,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 200px);
     grid-template-rows: repeat(3, 200px);
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
 }
 
 .game-board-cube {
@@ -42,6 +55,7 @@ body {
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+    padding: 1rem;
 }
 
 .game-modal {
@@ -98,8 +112,32 @@ body {
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: var(--color-two);
+    border-radius: 2rem;
+    box-shadow: 0 0 10px hsla(0, 0%, 0%,0.6);
+}
+
+.form-modal-input {
+    padding: 0.2rem 1rem;
+    border: 2px solid var(--color-two);
+    border-radius: 1rem;
+}
+
+.form-modal-input:hover {
+    border: 2px solid var(--color-three);
+}
+
+.form-modal-submit {
+    border: none;
+    background-color: var(--color-four);
+    padding: 0.5rem 2rem;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+}
+
+.form-modal-submit:hover {
+    background-color: var(--color-three);
 }
 
 /*######################################
@@ -108,4 +146,11 @@ body {
 
 .footer {
     padding: 1rem;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
+}
+
+.footer-link {
+    text-decoration: none;
 }
