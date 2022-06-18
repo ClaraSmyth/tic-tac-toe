@@ -99,14 +99,14 @@ const displayController = (() => {
                     //     currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
                     // }
 
-                    if (currentPlayer[0].isAi === true) {
-                        let move = aI.smartMove()
-                        gameBoard.updateBoard(move, currentPlayer[0].value);
-                        populateGrid();
-                        gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
-                        if (gameBoard.checkTie() === false) restartGame('tie');
-                        currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
-                    }
+                    // if (currentPlayer[0].isAi === true) {
+                    //     let move = aI.smartMove()
+                    //     gameBoard.updateBoard(move, currentPlayer[0].value);
+                    //     populateGrid();
+                    //     gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
+                    //     if (gameBoard.checkTie() === false) restartGame('tie');
+                    //     currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
+                    // }
                 } 
             });
         });
@@ -146,31 +146,31 @@ const playGame = (() => {
     return;
 })();
 
-const aI = (() => {
+// const aI = (() => {
 
-    let bestScore = -Infinity;
+//     let bestScore = -Infinity;
 
-    const smartMove = () => {
-        let bestMove = null;
-        gameBoard.board.some((value, index) => {
-            if (value === '') {
-                gameBoard.updateBoard(index, 1, 'x')
-                bestMove = miniMax()
-                move = index;
-                gameBoard.updateBoard(index, 1, '')
-            }
-            return bestMove === 1;
-        });
-        return move;
-    }
+//     const smartMove = () => {
+//         let bestMove = null;
+//         gameBoard.board.some((value, index) => {
+//             if (value === '') {
+//                 gameBoard.updateBoard(index, 1, 'x')
+//                 bestMove = miniMax()
+//                 move = index;
+//                 gameBoard.updateBoard(index, 1, '')
+//             }
+//             return bestMove === 1;
+//         });
+//         return move;
+//     }
 
-    const miniMax = () => {
-        return 1;
-    }
+//     const miniMax = () => {
+//         return 1;
+//     }
 
-    const randomMove = () => {
-        return Math.floor(Math.random() * gameBoard.board.length);
-    }
+//     const randomMove = () => {
+//         return Math.floor(Math.random() * gameBoard.board.length);
+//     }
     
-    return {randomMove, smartMove}
-})();
+//     return {randomMove, smartMove}
+// })();
