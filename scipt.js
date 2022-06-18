@@ -83,12 +83,22 @@ const displayController = (() => {
         gridCube.forEach((cube, index) => {
             cube.addEventListener('click', (e) => {
                 if (cube.id === '') {
+                    console.log(currentPlayer[0].isAi)
                     gameBoard.updateBoard(index, currentPlayer[0].value);
                     populateGrid();
                     gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
                     if (gameBoard.checkTie() === false) restartGame('tie');
                     currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
-                    // console.log(gameBoard.board);
+
+                    if (currentPlayer[0].isAi === true) {
+                        let random = aI.randomMove()
+                        while (gameBoard.board[random] !== '') random = aI.randomMove();
+                        gameBoard.updateBoard(random, currentPlayer[0].value);
+                        populateGrid();
+                        gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
+                        if (gameBoard.checkTie() === false) restartGame('tie');
+                        currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
+                    }
                 } 
             });
         });
@@ -97,13 +107,13 @@ const displayController = (() => {
     return {populateGrid, selection, updateModal, showEndGameModal, showFormModal, grabFormSubmit};
 })();
 
-const Player = (name, value) => {
-    return {name, value};
+const Player = (name, value, isAi) => {
+    return {name, value, isAi};
 };
 
 const playGame = (() => {
-    const playerOne = Player('Player One', 'x');
-    const playerTwo = Player('Player Two', 'o');
+    const playerOne = Player('Player One', 'x', false);
+    const playerTwo = Player('Player Two', 'o', true);
     let currentPlayer = [playerOne];
 
     const updateName = (nameOne, nameTwo) => {
@@ -126,4 +136,13 @@ const playGame = (() => {
     displayController.grabFormSubmit(updateName);
     displayController.selection(currentPlayer, updatePlayer, restartGame, updateName);
     return;
+})();
+
+const aI = (() => {
+
+    const randomMove = () => {
+        return Math.floor(Math.random() * gameBoard.board.length);
+    }
+    
+    return {randomMove}
 })();
