@@ -151,9 +151,15 @@ const aI = (() => {
     let bestScore = -Infinity;
 
     const smartMove = () => {
+        let bestMove = null;
         gameBoard.board.some((value, index) => {
-            move = index;
-            return value === '';
+            if (value === '') {
+                gameBoard.updateBoard(index, 1, 'x')
+                bestMove = miniMax()
+                move = index;
+                gameBoard.updateBoard(index, 1, '')
+            }
+            return bestMove === 1;
         });
         return move;
     }
