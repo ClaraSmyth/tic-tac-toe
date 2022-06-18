@@ -83,17 +83,25 @@ const displayController = (() => {
         gridCube.forEach((cube, index) => {
             cube.addEventListener('click', (e) => {
                 if (cube.id === '') {
-                    console.log(currentPlayer[0].isAi)
                     gameBoard.updateBoard(index, currentPlayer[0].value);
                     populateGrid();
                     gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
                     if (gameBoard.checkTie() === false) restartGame('tie');
                     currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
 
+                    // if (currentPlayer[0].isAi === true) {
+                    //     let move = aI.randomMove()
+                    //     while (gameBoard.board[move] !== '') move = aI.randomMove();
+                    //     gameBoard.updateBoard(move, currentPlayer[0].value);
+                    //     populateGrid();
+                    //     gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
+                    //     if (gameBoard.checkTie() === false) restartGame('tie');
+                    //     currentTurn.innerText = `Current player: ${currentPlayer[0].name}`;
+                    // }
+
                     if (currentPlayer[0].isAi === true) {
-                        let random = aI.randomMove()
-                        while (gameBoard.board[random] !== '') random = aI.randomMove();
-                        gameBoard.updateBoard(random, currentPlayer[0].value);
+                        let move = aI.smartMove()
+                        gameBoard.updateBoard(move, currentPlayer[0].value);
                         populateGrid();
                         gameBoard.checkWin(currentPlayer[0]) === false ? updatePlayer() : restartGame('win');
                         if (gameBoard.checkTie() === false) restartGame('tie');
@@ -140,9 +148,23 @@ const playGame = (() => {
 
 const aI = (() => {
 
+    let bestScore = -Infinity;
+
+    const smartMove = () => {
+        gameBoard.board.some((value, index) => {
+            move = index;
+            return value === '';
+        });
+        return move;
+    }
+
+    const miniMax = () => {
+        return 1;
+    }
+
     const randomMove = () => {
         return Math.floor(Math.random() * gameBoard.board.length);
     }
     
-    return {randomMove}
+    return {randomMove, smartMove}
 })();
