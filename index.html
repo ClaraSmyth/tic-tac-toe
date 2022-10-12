@@ -1,53 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./scipt.js" defer></script>
-    <title>Tic Tac Toe</title>
-</head>
-<body>
-    <header class="header">
-        <h1 class="header-title">Tic <span class="header-title-span">Tac</span> Toe</h1>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./reset.css" />
+        <link rel="stylesheet" href="./styles.css" />
+        <script src="./scipt.js" defer></script>
+        <title>Tic Tac Toe</title>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="header-title">Tic <span class="header-title-span">Tac</span> Toe</h1>
+        </header>
 
-    <main class="main-content">
-        <h2 class="current-player">Player 1</h2>
-        <div class="game-board">
-            <div class="game-board-cube"><img data-cube-img="0" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="1" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="2" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="3" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="4" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="5" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="6" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="7" src="" alt=""></div>
-            <div class="game-board-cube"><img data-cube-img="8" src="" alt=""></div>
-        </div>
-        <div class="game-modal">
-            <div class="game-modal-container">
-                <h2 class="game-modal-header">Game Over!</h2>
-                <p class="game-modal-outcome">Example</p>
-                <p class="game-modal-footer">Click anywhere to play again!</p>
+        <main class="main-content">
+            <h2 class="current-player">Player 1</h2>
+            <div class="game-board">
+                <div class="game-board-cube"><img data-cube-img="0" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="1" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="2" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="3" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="4" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="5" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="6" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="7" src="" alt="" /></div>
+                <div class="game-board-cube"><img data-cube-img="8" src="" alt="" /></div>
             </div>
-        </div>
-        <div class="form-modal">
-            <form class="form-modal-container" action="">
-                <h2 class="form-modal-header">Choose a name!</h2>
-                <label for="player-one">Player One</label>
-                <input class="form-modal-input" type="text" name="player-one" id="player-one" maxlength="20" required>
-                <label for="player-two">Player Two</label>
-                <input class="form-modal-input" type="text" name="player-two" id="player-two" maxlength="20" required>
-                <button class="form-modal-submit" type="submit">Submit</button>
-            </form>
-        </div>
-    </main>
+            <div class="game-modal">
+                <div class="game-modal-container">
+                    <h2 class="game-modal-header">Game Over!</h2>
+                    <p class="game-modal-outcome">Example</p>
+                    <p class="game-modal-footer">Click anywhere to play again!</p>
+                </div>
+            </div>
+            <div class="form-modal">
+                <form class="form-modal-container" action="">
+                    <h2 class="form-modal-header">Choose a name!</h2>
+                    <label for="player-one">Player One</label>
+                    <input
+                        class="form-modal-input"
+                        type="text"
+                        name="player-one"
+                        id="player-one"
+                        maxlength="20"
+                        required
+                    />
+                    <label for="player-two">Player Two</label>
+                    <input
+                        class="form-modal-input"
+                        type="text"
+                        name="player-two"
+                        id="player-two"
+                        maxlength="20"
+                        required
+                    />
+                    <button class="form-modal-submit" type="submit">Submit</button>
+                </form>
+            </div>
+        </main>
 
-    <footer class="footer">
-        <p>Created by <a class="footer-link" href="https://github.com/ClaraSmyth">Clara</a> for <a class="footer-link" href="https://www.theodinproject.com">TheOdinProject</a></p>
-    </footer>
-</body>
+        <footer class="footer">
+            <p>
+                Created by <a target="_blank" class="footer-link" href="https://github.com/ClaraSmyth">Clara</a> for
+                <a target="_blank" class="footer-link" href="https://www.theodinproject.com">TheOdinProject</a>
+            </p>
+        </footer>
+    </body>
 </html>
